@@ -1,0 +1,77 @@
+{% extends 'layout/base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+    integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock css %}
+
+{% block content %}
+<section>
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <h3 class="text-center">{{name}}</h3>
+
+        <div class="row">
+            <div class="col-md-12 fs-3 text-center my-3 mx-1 bg-secondary p-2 rounded-2 text-light">
+                Optimized number of clusters: <strong>{{clusters}}</strong>
+                <br>
+                <small>
+                    chosen number of clusters <strong>{{chosen_clusters}}</strong>
+                </small>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card bg-dark text-white">
+                    <a href="/{{elbow}}" data-lightbox="image-elbow" data-title="Best number of clusters">
+                        <img class="card-img" src="/{{elbow}}" alt="{{Title}}" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <a href="/{{fuzzy}}" data-lightbox="image-fuzzy" data-title="fuzzy score">
+                        <img class="card-img" src="/{{fuzzy}}" alt="{{Title}}" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card bg-dark text-white">
+                    <a href="/{{kmeans}}" data-lightbox="image-kmeans" data-title="Kmeans clustering">
+                        <img class="card-img" src="/{{kmeans}}" alt="{{Title}}" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <a href="/{{dbscan}}" data-lightbox="image-dbscan" data-title="DBSCAN clustering">
+                        <img class="card-img" src="/{{dbscan}}" alt="{{Title}}" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="table-responsive">
+                {{table|safe}}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+    integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"
+    integrity="sha512-U9dKDqsXAE11UA9kZ0XKFyZ2gQCj+3AwZdBMni7yXSvWqLFEj8C1s7wRmWl9iyij8d5zb4wm56j4z/JVEwS77g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'positionFromTop': 80,
+        })
+    })
+</script>
+{% endblock js %}
